@@ -13,6 +13,8 @@ repositories {
 
 dependencies{
   api("com.aliyun:dingtalk:2.0.84")
+  api("com.squareup.okhttp3:okhttp:4.9.3")
+
 }
 
 // Configure Gradle IntelliJ Plugin

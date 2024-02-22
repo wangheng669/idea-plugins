@@ -25,10 +25,10 @@
 
   </extensions>
     <actions>
-        <action id="demo.myplugin.updatefate" class="UpdateFateAction" text="更新聊缘">
+        <action id="demo.myplugin.updatefate" class="UpdateCodeAction" text="更新聊缘">
             <add-to-group group-id="EditorPopupMenu" anchor="last"/>
         </action>
-        <action id="demo.myplugin.updatemo" class="UpdateMoAction" text="更新聊欢">
+        <action id="demo.myplugin.updatemo" class="UpdateCodeAction" text="更新聊欢">
             <add-to-group group-id="EditorPopupMenu" anchor="last"/>
         </action>
     </actions>
