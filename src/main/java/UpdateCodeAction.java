@@ -37,7 +37,7 @@ public class UpdateCodeAction extends AnAction {
                 String json = String.format("{\"project_name\": \"%s\"}", project_name);
                 RequestBody requestBody = RequestBody.create(Objects.requireNonNull(MediaType.parse("application/json; charset=utf-8")), json);
                 Request request = new Request.Builder()
-                        .url("http://10.75.2.225:8080")
+                        .url("http://127.0.0.1:8080")
                         .post(requestBody)
                         .build();
                 try (Response response = client.newCall(request).execute()) {
