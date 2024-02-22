@@ -25,6 +25,9 @@
 
   </extensions>
     <actions>
+        <action id="demo.myplugin.log" class="LogAction" text="打开日志">
+            <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+        </action>
         <action id="demo.myplugin.updatefate" class="UpdateCodeAction" text="更新聊缘">
             <add-to-group group-id="EditorPopupMenu" anchor="last"/>
         </action>
