@@ -22,8 +22,9 @@
   <!-- Extension points defined by the plugin.
        Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
   <extensions defaultExtensionNs="com.intellij">
-
+      <toolWindow id="MyToolWindowFactory" secondary="true" anchor="right" factoryClass="MyToolWindowFactory"/>
   </extensions>
+
     <actions>
         <action id="demo.myplugin.log" class="LogAction" text="打开日志">
             <add-to-group group-id="EditorPopupMenu" anchor="last"/>
@@ -34,5 +35,6 @@
         <action id="demo.myplugin.updatemo" class="UpdateCodeAction" text="更新聊欢">
             <add-to-group group-id="EditorPopupMenu" anchor="last"/>
         </action>
+        <action id="test" class="testAction" text="test"/>
     </actions>
 </idea-plugin>
