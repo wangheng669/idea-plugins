@@ -4,23 +4,20 @@ import com.intellij.notification.Notifications;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.project.Project;
-import okhttp3.*;
-
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
+import java.net.*;
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
-import java.net.URL;
+import java.net.http.HttpClient;
+import java.net.http.HttpHeaders;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.util.Objects;
+import java.util.concurrent.CompletableFuture;
 
 
 public class UpdateCodeAction extends AnAction {
 
     @Override
     public void actionPerformed(AnActionEvent e) {
-        Project project = e.getProject(); // 获取当前项目
         try {
             sendPost(e.getPresentation().getText());
         } catch (IOException ex) {
@@ -33,23 +30,20 @@ public class UpdateCodeAction extends AnAction {
         new Thread(new Runnable(){
             @Override
             public void run() {
-                OkHttpClient client = new OkHttpClient();
-                String json = String.format("{\"project_name\": \"%s\"}", project_name);
-                RequestBody requestBody = RequestBody.create(Objects.requireNonNull(MediaType.parse("application/json; charset=utf-8")), json);
-                Request request = new Request.Builder()
-                        .url("http://127.0.0.1:8080")
-                        .post(requestBody)
+                String json = String.format("{\"message\": \"%s\"}", Objects.equals(project_name, "更新聊缘") ? 2 : 1 );
+                HttpClient httpClient = HttpClient.newHttpClient();
+                HttpRequest request = HttpRequest.newBuilder()
+                        .uri(URI.create("http://127.0.0.1:8080"))
+                        .header("Content-Type", "application/json")
+                        .POST(HttpRequest.BodyPublishers.ofString(json))
                         .build();
-                try (Response response = client.newCall(request).execute()) {
-                    if (!response.isSuccessful()) {
-                        throw new IOException("Unexpected code " + response);
-                    }
-                    String responseData = response.body().string();
-                    Notifications.Bus.notify(new Notification("System Messages", project_name+"代码完成", responseData, NotificationType.INFORMATION));
-                    System.out.println(responseData);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+
+                CompletableFuture<HttpResponse<String>> responseFuture = httpClient.sendAsync(request, HttpResponse.BodyHandlers.ofString());
+                responseFuture.thenAccept(response -> {
+                    String responseBody = response.body();
+                    Notifications.Bus.notify(new Notification("System Messages", project_name+"代码完成", responseBody, NotificationType.INFORMATION));
+                }).join();
+
             }
         }).start();
     }
