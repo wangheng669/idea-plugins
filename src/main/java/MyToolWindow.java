@@ -7,11 +7,10 @@ import java.util.Calendar;
 public class MyToolWindow {
 
     private JPanel myToolWindowContent;
-    private JTree tree1;
 
     public MyToolWindow(ToolWindow toolWindow) {
-        Tree.
-        myToolWindowContent.add()
+//        Tree.
+//        myToolWindowContent.add()
     }
 
 

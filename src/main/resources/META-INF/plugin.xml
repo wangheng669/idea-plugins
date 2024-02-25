@@ -23,6 +23,7 @@
        Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
   <extensions defaultExtensionNs="com.intellij">
       <toolWindow id="MyToolWindowFactory" secondary="true" anchor="right" factoryClass="MyToolWindowFactory"/>
+      <editorFactoryMouseListener implementation="TransSelected"/>
   </extensions>
 
     <actions>
@@ -35,6 +36,5 @@
         <action id="demo.myplugin.updatemo" class="UpdateCodeAction" text="更新聊欢">
             <add-to-group group-id="EditorPopupMenu" anchor="last"/>
         </action>
-        <action id="test" class="testAction" text="test"/>
     </actions>
 </idea-plugin>
