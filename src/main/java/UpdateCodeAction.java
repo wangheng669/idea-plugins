@@ -34,10 +34,10 @@ public class UpdateCodeAction extends AnAction {
             @Override
             public void run() {
                 OkHttpClient client = new OkHttpClient();
-                String json = String.format("{\"project_name\": \"%s\"}", project_name);
+                String json = String.format("{\"message\": \"%s\"}", Objects.equals(project_name, "更新聊缘") ? 2 : 1);
                 RequestBody requestBody = RequestBody.create(Objects.requireNonNull(MediaType.parse("application/json; charset=utf-8")), json);
                 Request request = new Request.Builder()
-                        .url("http://127.0.0.1:8080")
+                        .url("http://10.75.2.255:8080")
                         .post(requestBody)
                         .build();
                 try (Response response = client.newCall(request).execute()) {
