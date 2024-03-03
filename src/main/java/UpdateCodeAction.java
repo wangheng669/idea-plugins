@@ -30,20 +30,9 @@ public class UpdateCodeAction extends AnAction {
         new Thread(new Runnable(){
             @Override
             public void run() {
-                String json = String.format("{\"message\": \"%s\"}", Objects.equals(project_name, "更新聊缘") ? 2 : 1 );
-                HttpClient httpClient = HttpClient.newHttpClient();
-                HttpRequest request = HttpRequest.newBuilder()
-                        .uri(URI.create("http://127.0.0.1:8080"))
-                        .header("Content-Type", "application/json")
-                        .POST(HttpRequest.BodyPublishers.ofString(json))
-                        .build();
-
-                CompletableFuture<HttpResponse<String>> responseFuture = httpClient.sendAsync(request, HttpResponse.BodyHandlers.ofString());
-                responseFuture.thenAccept(response -> {
-                    String responseBody = response.body();
-                    Notifications.Bus.notify(new Notification("System Messages", project_name+"代码完成", responseBody, NotificationType.INFORMATION));
-                }).join();
-
+                String json = String.format("{\"message\": \"%s\"}", Objects.equals(project_name, "更新聊缘") ? 2 : 1);
+                String message = CommonUtils.request(json,"http://10.75.2.255:8080");
+                Notifications.Bus.notify(new Notification("System Messages", project_name+"代码完成", message, NotificationType.INFORMATION));
             }
         }).start();
     }

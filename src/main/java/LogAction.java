@@ -30,6 +30,7 @@ public class LogAction extends AnAction {
                     return;
                 }
 
+                
                 editor.getCaretModel().moveToOffset(currentFile.getTextLength()); // 将光标移动到文档末尾
                 editor.getScrollingModel().scrollVertically(editor.getContentComponent().getHeight() - editor.getScrollingModel().getVisibleArea().height);
             }

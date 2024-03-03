@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "com.myplugin"
-version = "1.0-SNAPSHOT"
+version = "2.0"
 
 repositories {
   mavenCentral()
@@ -14,7 +14,6 @@ repositories {
 dependencies{
   api("com.aliyun:dingtalk:2.0.84")
   api("com.squareup.okhttp3:okhttp:4.9.3")
-
 }
 
 // Configure Gradle IntelliJ Plugin
@@ -37,7 +36,7 @@ tasks {
   }
 
   patchPluginXml {
-    sinceBuild.set("231")
+    sinceBuild.set("191")
     untilBuild.set("241.*")
   }
 

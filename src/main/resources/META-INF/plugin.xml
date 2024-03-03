@@ -22,8 +22,12 @@
   <!-- Extension points defined by the plugin.
        Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
   <extensions defaultExtensionNs="com.intellij">
-
+      <toolWindow id="MyToolWindowFactory" secondary="true" anchor="right" factoryClass="MyToolWindowFactory"/>
+      <statusBarWidgetFactory order="first" id="TransStatusBarWidget" implementation="TransStatusBarWidgetFactory"/>
+      <editorFactoryMouseListener implementation="GoTransSelected"/>
+      <editorFactoryMouseListener implementation="GoCodeTree"/>
   </extensions>
+
     <actions>
         <action id="demo.myplugin.log" class="LogAction" text="打开日志">
             <add-to-group group-id="EditorPopupMenu" anchor="last"/>
