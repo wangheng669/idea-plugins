@@ -33,14 +33,8 @@ public class FileWindow {
         if (isFileInProject) {
             fileName = fileName.replace(baseDir,"");
             String jsonString = String.format("{\"file_name\": \"%s\", \"line\": %d, \"base_dir\": \"%s\"}", fileName, lineNumber, baseDir);
-            CommonFile.Save("test3",fileName+":"+String.valueOf(lineNumber));
-            List<NodeTree> nodeTrees = DomTree.createTree(CommonFile.readFileToArray("test3.txt"));
-            for (NodeTree nodeTree : nodeTrees) {
-                System.out.println(nodeTree.getName());
-            }
             return CommonUtils.request(jsonString,"http://127.0.0.1:8080/codetree");
         }
-        System.out.println("当前文件不在项目下.");
         return "";
     }
 
