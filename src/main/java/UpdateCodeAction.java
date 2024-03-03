@@ -33,23 +33,9 @@ public class UpdateCodeAction extends AnAction {
         new Thread(new Runnable(){
             @Override
             public void run() {
-                OkHttpClient client = new OkHttpClient();
                 String json = String.format("{\"message\": \"%s\"}", Objects.equals(project_name, "更新聊缘") ? 2 : 1);
-                RequestBody requestBody = RequestBody.create(Objects.requireNonNull(MediaType.parse("application/json; charset=utf-8")), json);
-                Request request = new Request.Builder()
-                        .url("http://10.75.2.255:8080")
-                        .post(requestBody)
-                        .build();
-                try (Response response = client.newCall(request).execute()) {
-                    if (!response.isSuccessful()) {
-                        throw new IOException("Unexpected code " + response);
-                    }
-                    String responseData = response.body().string();
-                    Notifications.Bus.notify(new Notification("System Messages", project_name+"代码完成", responseData, NotificationType.INFORMATION));
-                    System.out.println(responseData);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                String message = CommonUtils.request(json,"http://10.75.2.255:8080");
+                Notifications.Bus.notify(new Notification("System Messages", project_name+"代码完成", message, NotificationType.INFORMATION));
             }
         }).start();
     }

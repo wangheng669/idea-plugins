@@ -9,12 +9,9 @@ public class MyToolWindowFactory implements ToolWindowFactory {
 
     @Override
     public void createToolWindowContent(@NotNull Project project, @NotNull ToolWindow toolWindow) {
-        // 初始化自定义组件对象
         MyToolWindow myToolWindow = new MyToolWindow(toolWindow);
-
-        // 组件添加到idea中
         ContentFactory contentFactory = ContentFactory.getInstance();
-        Content content = contentFactory.createContent(myToolWindow.getContent(), "", false);
+        Content content = contentFactory.createContent(myToolWindow.getContent(project), "", false);
         toolWindow.getContentManager().addContent(content);
     }
 }

@@ -22,9 +22,10 @@
   <!-- Extension points defined by the plugin.
        Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
   <extensions defaultExtensionNs="com.intellij">
-<!--      <toolWindow id="MyToolWindowFactory" secondary="true" anchor="right" factoryClass="MyToolWindowFactory"/>-->
+      <toolWindow id="MyToolWindowFactory" secondary="true" anchor="right" factoryClass="MyToolWindowFactory"/>
       <statusBarWidgetFactory order="first" id="TransStatusBarWidget" implementation="TransStatusBarWidgetFactory"/>
-      <editorFactoryMouseListener implementation="TransSelected"/>
+      <editorFactoryMouseListener implementation="GoTransSelected"/>
+      <editorFactoryMouseListener implementation="GoCodeTree"/>
   </extensions>
 
     <actions>
