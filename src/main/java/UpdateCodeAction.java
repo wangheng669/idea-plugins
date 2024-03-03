@@ -31,7 +31,7 @@ public class UpdateCodeAction extends AnAction {
             @Override
             public void run() {
                 String json = String.format("{\"message\": \"%s\"}", Objects.equals(project_name, "更新聊缘") ? 2 : 1);
-                String message = CommonUtils.request(json,"http://10.75.2.255:8080");
+                String message = CommonUtils.request(json,"http://127.0.0.1:8080/updatecode");
                 Notifications.Bus.notify(new Notification("System Messages", project_name+"代码完成", message, NotificationType.INFORMATION));
             }
         }).start();

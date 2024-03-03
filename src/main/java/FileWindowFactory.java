@@ -5,13 +5,13 @@ import com.intellij.ui.content.Content;
 import com.intellij.ui.content.ContentFactory;
 import org.jetbrains.annotations.NotNull;
 
-public class MyToolWindowFactory implements ToolWindowFactory {
+public class FileWindowFactory implements ToolWindowFactory {
 
     @Override
     public void createToolWindowContent(@NotNull Project project, @NotNull ToolWindow toolWindow) {
-        MyToolWindow myToolWindow = new MyToolWindow(toolWindow);
+        FileWindow fileWindow = new FileWindow(toolWindow);
         ContentFactory contentFactory = ContentFactory.getInstance();
-        Content content = contentFactory.createContent(myToolWindow.getContent(project), "", false);
+        Content content = contentFactory.createContent(fileWindow.getContent(project), "", false);
         toolWindow.getContentManager().addContent(content);
     }
 }

@@ -35,8 +35,8 @@ public class GoTransSelected implements EditorMouseListener {
     public void translate(String text, Editor editor) {
         if (TextUtils.isEmpty(text)) return;
         String json = String.format("{\"text\": \"%s\"}", text);
-        String message = CommonUtils.request(json,"http://127.0.0.1:8088");
-        System.out.println("翻译后："+message);
+        System.out.println(json);
+        String message = CommonUtils.request(json,"http://127.0.0.1:8080/translate");
         if(!message.isEmpty()){
             showMessage(message,editor);
         }

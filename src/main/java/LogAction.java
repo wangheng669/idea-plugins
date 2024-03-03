@@ -18,19 +18,14 @@ public class LogAction extends AnAction {
             VirtualFile file = LocalFileSystem.getInstance().findFileByPath(filePath); // 获取文件对象
             if (file != null) {
                 FileEditorManager.getInstance(project).openFile(file, true); // 打开文件
-
-                // 获取当前活动的编辑器
-                Editor editor = FileEditorManager.getInstance(project).getSelectedTextEditor();
+                Editor editor = FileEditorManager.getInstance(project).getSelectedTextEditor(); // 获取当前活动的编辑器
                 if (editor == null) {
                     return;
                 }
-
                 PsiFile currentFile = PsiUtilBase.getPsiFileInEditor(editor, project);
                 if (currentFile == null) {
                     return;
                 }
-
-                
                 editor.getCaretModel().moveToOffset(currentFile.getTextLength()); // 将光标移动到文档末尾
                 editor.getScrollingModel().scrollVertically(editor.getContentComponent().getHeight() - editor.getScrollingModel().getVisibleArea().height);
             }

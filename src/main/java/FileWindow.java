@@ -9,22 +9,19 @@ import com.intellij.ui.components.JBScrollPane;
 import com.intellij.ui.treeStructure.Tree;
 
 import javax.swing.*;
-import javax.swing.event.TreeSelectionEvent;
-import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.List;
 
-public class MyToolWindow {
+public class FileWindow {
 
     private JPanel myToolWindowContent;
 
-    public MyToolWindow(ToolWindow toolWindow) {
+    public FileWindow(ToolWindow toolWindow) {
         toolWindow.setStripeTitle("当日开发文件");
     }
 
@@ -49,11 +46,10 @@ public class MyToolWindow {
 
     public static void UpdateToolWindowContent(Project project, String treeResult) {
         ToolWindowManager toolWindowManager = ToolWindowManager.getInstance(project);
-        ToolWindow toolWindow = toolWindowManager.getToolWindow("MyToolWindowFactory");
+        ToolWindow toolWindow = toolWindowManager.getToolWindow("FileWindowFactory");
         if (toolWindow != null) {
-            // 在这里，你可以更新工具窗口的内容，例如设置文本标签的新文本
-            SwingUtilities.invokeLater(() -> {
-                MyToolWindow myToolWindow = new MyToolWindow(toolWindow);
+            SwingUtilities.invokeLater(() -> { // 在这里，你可以更新工具窗口的内容，例如设置文本标签的新文本
+                FileWindow myToolWindow = new FileWindow(toolWindow);
                 toolWindow.getComponent().removeAll();
                 toolWindow.getComponent().add(myToolWindow.createTree(treeResult,project));
                 toolWindow.getComponent().updateUI();

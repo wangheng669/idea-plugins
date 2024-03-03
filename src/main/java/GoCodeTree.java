@@ -30,8 +30,8 @@ public class GoCodeTree implements EditorMouseListener {
     }
 
     public void codeTree(Editor editor) {
-        String treeResult = MyToolWindow.goCreateTree(editor);
-        MyToolWindow.UpdateToolWindowContent(editor.getProject(),treeResult);
+        String treeResult = FileWindow.goCreateTree(editor);
+        FileWindow.UpdateToolWindowContent(editor.getProject(),treeResult);
     }
 
 }
