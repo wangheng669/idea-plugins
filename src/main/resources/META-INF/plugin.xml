@@ -18,7 +18,6 @@
        Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
   <extensions defaultExtensionNs="com.intellij">
       <toolWindow id="FileWindowFactory" secondary="true" anchor="right" factoryClass="FileWindowFactory"/>
-      <statusBarWidgetFactory order="first" id="TransStatusBarWidget" implementation="TransStatusBarWidgetFactory"/>
       <editorFactoryMouseListener implementation="GoTransSelected"/>
       <editorFactoryMouseListener implementation="GoCodeTree"/>
   </extensions>
