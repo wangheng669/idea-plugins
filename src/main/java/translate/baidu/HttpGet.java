@@ -1,4 +1,4 @@
-package baidu;
+package translate.baidu;
 
 import java.io.BufferedReader;
 import java.io.Closeable;

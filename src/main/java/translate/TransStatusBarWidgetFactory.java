@@ -1,3 +1,5 @@
+package translate;
+
 import com.intellij.openapi.util.NlsContexts;
 import com.intellij.openapi.wm.StatusBar;
 import com.intellij.openapi.wm.StatusBarWidget;
@@ -9,7 +11,7 @@ import org.jetbrains.annotations.NotNull;
 public class TransStatusBarWidgetFactory implements StatusBarWidgetFactory {
     @Override
     public String getId() {
-        return "TransStatusBarWidget";
+        return "translate.TransStatusBarWidget";
     }
 
     @Override

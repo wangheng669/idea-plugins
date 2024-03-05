@@ -1,3 +1,5 @@
+package translate;
+
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.wm.StatusBar;
 import com.intellij.openapi.wm.StatusBarWidget;
@@ -19,7 +21,7 @@ public class TransStatusBarWidget implements StatusBarWidget, StatusBarWidget.Te
 
     @Override
     public String ID() {
-        return "TransStatusBarWidget";
+        return "translate.TransStatusBarWidget";
     }
 
     @Override

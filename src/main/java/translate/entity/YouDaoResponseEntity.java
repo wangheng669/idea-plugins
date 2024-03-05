@@ -1,4 +1,4 @@
-package entity;
+package translate.entity;
 
 import com.google.gson.annotations.SerializedName;
 

@@ -17,18 +17,18 @@
   <!-- Extension points defined by the plugin.
        Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
   <extensions defaultExtensionNs="com.intellij">
-      <toolWindow id="FileWindowFactory" secondary="true" anchor="right" factoryClass="FileWindowFactory"/>
-      <editorFactoryMouseListener implementation="GoTransSelected"/>
-      <editorFactoryMouseListener implementation="GoCodeTree"/>
+      <toolWindow id="codetree.FileWindowFactory" secondary="true" anchor="right" factoryClass="codetree.FileWindowFactory"/>
+      <editorFactoryMouseListener implementation="translate.GoTransSelected"/>
+      <editorFactoryMouseListener implementation="codetree.GoCodeTree"/>
   </extensions>
     <actions>
-        <action id="demo.myplugin.log" class="LogAction" text="打开日志">
+        <action id="demo.myplugin.log" class="system.LogAction" text="打开日志">
             <add-to-group group-id="EditorPopupMenu" anchor="last"/>
         </action>
-        <action id="demo.myplugin.updatefate" class="UpdateCodeAction" text="更新聊缘">
+        <action id="demo.myplugin.updatefate" class="system.UpdateCodeAction" text="更新聊缘">
             <add-to-group group-id="EditorPopupMenu" anchor="last"/>
         </action>
-        <action id="demo.myplugin.updatemo" class="UpdateCodeAction" text="更新聊欢">
+        <action id="demo.myplugin.updatemo" class="system.UpdateCodeAction" text="更新聊欢">
             <add-to-group group-id="EditorPopupMenu" anchor="last"/>
         </action>
     </actions>

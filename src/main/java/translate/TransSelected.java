@@ -1,5 +1,7 @@
-import baidu.HttpGet;
-import baidu.MD5;
+package translate;
+
+import translate.baidu.HttpGet;
+import translate.baidu.MD5;
 import com.google.gson.Gson;
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.editor.Editor;
@@ -11,7 +13,7 @@ import com.intellij.openapi.ui.popup.JBPopupFactory;
 import com.intellij.ui.Gray;
 import com.intellij.ui.JBColor;
 import org.apache.http.util.TextUtils;
-import entity.BaiduResponseEntity;
+import translate.entity.BaiduResponseEntity;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,3 +1,5 @@
+package codetree;
+
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.intellij.icons.AllIcons;
@@ -7,6 +9,7 @@ import com.intellij.openapi.wm.ToolWindow;
 import com.intellij.openapi.wm.ToolWindowManager;
 import com.intellij.ui.components.JBScrollPane;
 import com.intellij.ui.treeStructure.Tree;
+import common.CommonUtils;
 
 import javax.swing.*;
 import javax.swing.tree.*;
@@ -15,7 +18,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.util.Enumeration;
-import java.util.List;
 
 public class FileWindow {
 
@@ -40,7 +42,7 @@ public class FileWindow {
 
     public static void UpdateToolWindowContent(Project project, String treeResult) {
         ToolWindowManager toolWindowManager = ToolWindowManager.getInstance(project);
-        ToolWindow toolWindow = toolWindowManager.getToolWindow("FileWindowFactory");
+        ToolWindow toolWindow = toolWindowManager.getToolWindow("codetree.FileWindowFactory");
         if (toolWindow != null) {
             SwingUtilities.invokeLater(() -> { // 在这里，你可以更新工具窗口的内容，例如设置文本标签的新文本
                 FileWindow myToolWindow = new FileWindow(toolWindow);

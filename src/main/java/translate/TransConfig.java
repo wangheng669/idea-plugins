@@ -1,3 +1,5 @@
+package translate;
+
 public class TransConfig {
 
     /**

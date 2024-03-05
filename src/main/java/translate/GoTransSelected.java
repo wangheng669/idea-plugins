@@ -1,6 +1,5 @@
-import baidu.HttpGet;
-import baidu.MD5;
-import com.google.gson.Gson;
+package translate;
+
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.editor.event.EditorMouseEvent;
@@ -10,13 +9,7 @@ import com.intellij.openapi.ui.popup.BalloonBuilder;
 import com.intellij.openapi.ui.popup.JBPopupFactory;
 import com.intellij.ui.Gray;
 import com.intellij.ui.JBColor;
-import entity.BaiduResponseEntity;
 import org.apache.http.util.TextUtils;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
-import java.util.regex.Pattern;
 
 public class GoTransSelected implements EditorMouseListener {
 
@@ -34,9 +27,9 @@ public class GoTransSelected implements EditorMouseListener {
 
     public void translate(String text, Editor editor) {
         if (TextUtils.isEmpty(text)) return;
+        if (text.contains("\n")) return;
         String json = String.format("{\"text\": \"%s\"}", text);
-        System.out.println(json);
-        String message = CommonUtils.request(json,"http://127.0.0.1:8080/translate");
+        String message = common.CommonUtils.request(json,"http://127.0.0.1:8080/translate");
         if(!message.isEmpty()){
             showMessage(message,editor);
         }

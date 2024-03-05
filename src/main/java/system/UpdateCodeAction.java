@@ -1,18 +1,13 @@
+package system;
+
 import com.intellij.notification.Notification;
 import com.intellij.notification.NotificationType;
 import com.intellij.notification.Notifications;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
-import com.intellij.openapi.project.Project;
-import java.net.*;
 import java.io.IOException;
-import java.net.http.HttpClient;
-import java.net.http.HttpHeaders;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
 import java.util.Objects;
-import java.util.concurrent.CompletableFuture;
-
+import common.CommonUtils;
 
 public class UpdateCodeAction extends AnAction {
 
