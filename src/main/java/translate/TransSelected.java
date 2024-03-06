@@ -5,7 +5,7 @@ import com.intellij.openapi.editor.event.EditorMouseEvent;
 import com.intellij.openapi.editor.event.EditorMouseListener;
 import org.apache.http.util.TextUtils;
 import java.util.regex.Pattern;
-import translate.baidu.Translate;
+import translate.youdao.Translate;
 
 public class TransSelected implements EditorMouseListener {
 
@@ -31,7 +31,7 @@ public class TransSelected implements EditorMouseListener {
             selectedWord = selectedWord.replaceAll("_", " ");
             selectedWord = parseWord(selectedWord); // 驼峰
         }
-        Translate.TransByBaidu(selectedWord, editor,to);
+        Translate.TransByYoudao(selectedWord, editor,to);
     }
 
     /**

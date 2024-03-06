@@ -30,11 +30,7 @@ public class HttpGet {
             // 设置SSLContext
             SSLContext sslcontext = SSLContext.getInstance("TLS");
             sslcontext.init(null, new TrustManager[] { myX509TrustManager }, null);
-
             String sendUrl = getUrlWithQueryString(host, params);
-
-            // System.out.println("URL:" + sendUrl);
-
             URL uri = new URL(sendUrl); // 创建URL对象
             HttpURLConnection conn = (HttpURLConnection) uri.openConnection();
             if (conn instanceof HttpsURLConnection) {
