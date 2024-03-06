@@ -1,11 +1,17 @@
 package common;
 
+import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.fileEditor.FileEditorManager;
 import com.intellij.openapi.fileEditor.OpenFileDescriptor;
 import com.intellij.openapi.project.Project;
+import com.intellij.openapi.ui.popup.Balloon;
+import com.intellij.openapi.ui.popup.BalloonBuilder;
+import com.intellij.openapi.ui.popup.JBPopupFactory;
 import com.intellij.openapi.vfs.LocalFileSystem;
 import com.intellij.openapi.vfs.VirtualFile;
+import com.intellij.ui.Gray;
+import com.intellij.ui.JBColor;
 import okhttp3.*;
 import translate.TransConfig;
 
@@ -82,6 +88,33 @@ public class CommonUtils {
                 editor.getCaretModel().moveToLogicalPosition(editor.offsetToLogicalPosition(lineNumber - 1));
             }
         }
+    }
+
+
+    private static Balloon balloon;
+    private static Balloon lastBalloon;
+    private static Balloon waitBalloon;
+
+    public static void showMessage(String message, Editor editor) {
+        ApplicationManager.getApplication().invokeLater(() -> {
+            if(waitBalloon!=null)
+            {
+                waitBalloon.hide();
+            }
+            JBPopupFactory jbPopupFactory = JBPopupFactory.getInstance();
+            BalloonBuilder balloonBuilder = jbPopupFactory.createHtmlTextBalloonBuilder(message, null, new JBColor(
+                    Gray._222
+                    , Gray._77), null);
+            balloonBuilder.setFadeoutTime(30000);
+            balloon = balloonBuilder.createBalloon();
+
+            if (lastBalloon != null) {
+                lastBalloon.hide();
+            }
+            lastBalloon = balloon;
+            balloon.setAnimationEnabled(false);
+            balloon.show(jbPopupFactory.guessBestPopupLocation(editor), Balloon.Position.below);
+        });
     }
 
 
