@@ -10,13 +10,29 @@
   <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
        Simple HTML elements (text formatting, paragraphs, and lists) can be added inside of <![CDATA[ ]]> tag.
        Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
-  <description>双击翻译双击翻译双击翻译双击翻译双击翻译双击翻译双击翻译双击翻译双击翻译双击翻译双击翻译双击翻译双击翻译双击翻译</description>
+  <description>1.双击翻译2.跳转日志3.当日打开的文件4.更新代码1.双击翻译2.跳转日志3.当日打开的文件4.更新代码</description>
   <!-- Product and plugin compatibility requirements.
        Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
   <depends>com.intellij.modules.platform</depends>
   <!-- Extension points defined by the plugin.
        Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
   <extensions defaultExtensionNs="com.intellij">
+      <toolWindow id="codetree.FileWindowFactory" secondary="true" anchor="right" factoryClass="codetree.FileWindowFactory"/>
       <editorFactoryMouseListener implementation="translate.TransSelected"/>
+      <editorFactoryMouseListener implementation="codetree.GoCodeTree"/>
   </extensions>
+    <actions>
+        <action id="demo.myplugin.log.LogAction" class="system.LogAction" text="打开日志">
+            <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+        </action>
+        <action id="demo.myplugin.log.DayTaskAction" class="system.DayTaskAction" text="打开每日任务">
+            <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+        </action>
+        <action id="demo.myplugin.updatefate" class="system.UpdateCodeAction" text="更新聊缘">
+            <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+        </action>
+        <action id="demo.myplugin.updatemo" class="system.UpdateCodeAction" text="更新聊欢">
+            <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+        </action>
+    </actions>
 </idea-plugin>

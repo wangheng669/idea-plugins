@@ -58,7 +58,6 @@ public class CommonUtils {
         }
         return new BigInteger(1, digest).toString(16);
     }
-    
 
     public static String request(String json,String url) {
         OkHttpClient client = new OkHttpClient();
