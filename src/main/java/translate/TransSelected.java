@@ -22,8 +22,25 @@ public class TransSelected implements EditorMouseListener {
             }
         }).start();
     }
+    public static String camelToUnderscore(String camelCase) {
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < camelCase.length(); i++) {
+            char currentChar = camelCase.charAt(i);
+            if (Character.isUpperCase(currentChar) && i > 0) {
+                result.append('_');
+            }
+            result.append(Character.toLowerCase(currentChar));
+        }
+        return result.toString();
+    }
 
     public void translate(String selectedWord, Editor editor) {
+        if(selectedWord.matches(".*[a-z].*")){
+            selectedWord = camelToUnderscore(selectedWord); // 大写处理
+        }else{
+            selectedWord = selectedWord.toLowerCase();
+        }
+        System.out.println(selectedWord);
         String to = containsChinese(selectedWord) ? "en" : "zh";
         if(!containsChinese(selectedWord)){ // 非中文处理
             selectedWord = selectedWord.replaceAll("[^a-z^A-Z^0-9^ ^_^(^)]", "");
