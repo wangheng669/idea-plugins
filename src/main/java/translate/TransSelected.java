@@ -3,6 +3,7 @@ package translate;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.editor.event.EditorMouseEvent;
 import com.intellij.openapi.editor.event.EditorMouseListener;
+import common.CommonUtils;
 import org.apache.http.util.TextUtils;
 import java.util.regex.Pattern;
 import translate.youdao.Translate;
@@ -13,8 +14,9 @@ public class TransSelected implements EditorMouseListener {
     public void mouseReleased(EditorMouseEvent e){
         Editor editor=e.getEditor();
         String selectedWord=editor.getSelectionModel().getSelectedText();
-        if(TextUtils.isEmpty(selectedWord)) return;
-        if(selectedWord.contains("\n")) return;
+        if(TextUtils.isEmpty(selectedWord)) return; // 空限制
+        if(selectedWord.length() > 5000) return; // 字符限制
+        if(selectedWord.contains("\n")) return; // 换行符限制
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -22,6 +24,7 @@ public class TransSelected implements EditorMouseListener {
             }
         }).start();
     }
+
     public static String camelToUnderscore(String camelCase) {
         StringBuilder result = new StringBuilder();
         for (int i = 0; i < camelCase.length(); i++) {
@@ -35,12 +38,12 @@ public class TransSelected implements EditorMouseListener {
     }
 
     public void translate(String selectedWord, Editor editor) {
+
         if(selectedWord.matches(".*[a-z].*")){
             selectedWord = camelToUnderscore(selectedWord); // 大写处理
         }else{
             selectedWord = selectedWord.toLowerCase();
         }
-        System.out.println(selectedWord);
         String to = containsChinese(selectedWord) ? "en" : "zh";
         if(!containsChinese(selectedWord)){ // 非中文处理
             selectedWord = selectedWord.replaceAll("[^a-z^A-Z^0-9^ ^_^(^)]", "");
@@ -48,7 +51,16 @@ public class TransSelected implements EditorMouseListener {
             selectedWord = selectedWord.replaceAll("_", " ");
             selectedWord = parseWord(selectedWord); // 驼峰
         }
-        Translate.TransByYoudao(selectedWord, editor,to);
+
+        String result = "";
+        result = LocalData.read(selectedWord); // 优先读取本地
+        System.out.println(result);
+        if(TextUtils.isEmpty(result)){
+            System.out.println("请求");
+            result = Translate.TransByYoudao(selectedWord,to);
+            LocalData.store(selectedWord,result);
+        }
+        CommonUtils.showMessage(result,editor);
     }
 
     /**

@@ -16,11 +16,12 @@ public class Translate {
     /**
      * 百度翻译，主要翻译句子
      */
-    public static void TransByBaidu(String words, Editor editor, String to) {
+    public static String TransByBaidu(String words, String to) {
+        String result = "";
         Map<String, String> params = buildParams(words, "auto", to);
         Gson gson = new Gson();
         BaiduResponseEntity baiduResponse = gson.fromJson(HttpGet.get(TransConfig.BD_URL, params), BaiduResponseEntity.class);
-        CommonUtils.showMessage(baiduResponse.trans_result.get(0).dst,editor);
+        return result;
     }
 
     private static Map<String, String> buildParams(String query, String from, String to) {

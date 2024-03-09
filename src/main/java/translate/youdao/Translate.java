@@ -29,15 +29,17 @@ import java.util.*;
 
 public class Translate {
 
-    public static void TransByYoudao(String words, Editor editor, String to) {
+    public static String TransByYoudao(String words,String to) {
+        String result = "";
         Map<String, String> params = buildParams(words, "auto", to);
         try {
             Gson gson = new Gson();
             YouDaoResponseEntity youdaoResponse = gson.fromJson(requestForHttp(TransConfig.YD_URL,params), YouDaoResponseEntity.class);
-            CommonUtils.showMessage(youdaoResponse.translation.get(0),editor);
+            result = youdaoResponse.translation.get(0);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        return result;
     }
 
     private static Map<String, String> buildParams(String query, String from, String to) {

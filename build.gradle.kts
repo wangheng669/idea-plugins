@@ -4,8 +4,8 @@ plugins {
   id("org.jetbrains.intellij") version "1.16.1"
 }
 
-group = "com.myplugin"
-version = "2.1"
+group = "com.translate"
+version = "2.2"
 
 repositories {
   mavenCentral()
