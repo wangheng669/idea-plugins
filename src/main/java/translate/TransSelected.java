@@ -54,9 +54,7 @@ public class TransSelected implements EditorMouseListener {
 
         String result = "";
         result = LocalData.read(selectedWord); // 优先读取本地
-        System.out.println(result);
         if(TextUtils.isEmpty(result)){
-            System.out.println("请求");
             result = Translate.TransByYoudao(selectedWord,to);
             LocalData.store(selectedWord,result);
         }
